@@ -1,0 +1,73 @@
+/* Global styles */
+body {
+  font-family: "Poppins", sans-serif;
+  padding-top: 70px; /* keep space so non-hero sections aren't hidden under fixed navbar */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hero overrides (kept here so index.html inline styles can be removed later if desired) */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../images/hero1.jpg") center/cover no-repeat;
+  /* compensate for the body's top padding so the hero starts at the very top
+     while keeping its visual height equal to the viewport */
+  margin-top: -70px;
+  padding-top: 70px;
+  height: calc(100vh + 70px);
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .hero { height: calc(70vh + 70px); }
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+}
+
+/* Card animation: start invisible and slightly shifted, then animate into place */
+.card.animate-card {
+  opacity: 0;
+  transform: translateY(24px) scale(0.99);
+  transition: opacity 600ms cubic-bezier(.2,.9,.3,1), transform 600ms cubic-bezier(.2,.9,.3,1);
+  will-change: opacity, transform;
+}
+
+.card.animate-card.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger helper for rows: apply different delays to immediate children */
+.row.g-4 > .col-md-4 .card.animate-card,
+.row > .col-md-4 .card.animate-card {
+  transition-delay: 0ms;
+}
+.row.g-4 > .col-md-4:nth-child(1) .card.animate-card { transition-delay: 40ms; }
+.row.g-4 > .col-md-4:nth-child(2) .card.animate-card { transition-delay: 80ms; }
+.row.g-4 > .col-md-4:nth-child(3) .card.animate-card { transition-delay: 120ms; }
+
+/* Slight hover lift for cards */
+.card.h-100:hover {
+  transform: translateY(-6px);
+  transition: transform 250ms ease;
+}
+
+/* Blog card image fixes */
+.blog-card img, .card-img-top { height: 200px; object-fit: cover; }
+
+/* Small utilities */
+.text-dark { color: #111 !important; }
+
+/* Accessibility: reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  .card.animate-card,
+  .card.h-100:hover { transition: none !important; transform: none !important; }
+}
