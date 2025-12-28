@@ -71,3 +71,118 @@ body {
   .card.animate-card,
   .card.h-100:hover { transition: none !important; transform: none !important; }
 }
+
+/* Locations page: page header, sidebar filter and location card styles */
+.page-header {
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("../images/hero1.jpg") center/cover no-repeat;
+  color: #fff;
+  padding: 120px 0;
+  /* pull up under fixed navbar (body has 70px padding to prevent overlap) */
+  margin-top: -70px;
+}
+
+.filter-sidebar {
+  position: sticky;
+  top: 90px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.08);
+}
+
+/* Hidden by default on small screens, slide-in overlay when opened */
+.filter-panel {
+  transition: transform 260ms cubic-bezier(.2,.9,.3,1), opacity 200ms;
+  /* keep panel out of layout and show only when opened */
+  position: fixed;
+  left: 12px;
+  top: 80px;
+  width: calc(100% - 24px);
+  max-width: 360px;
+  z-index: 1050;
+}
+.filter-panel.closed {
+  transform: translateX(-18px) translateY(0);
+  opacity: 0;
+  pointer-events: none;
+}
+.filter-panel.open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.filter-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1040;
+}
+.filter-overlay.show { display: block; }
+
+.filter-toggle-btn {
+  /* inline button used above cards on small screens */
+  display: inline-flex;
+  align-items: center;
+}
+
+.filter-sidebar h5 { margin-bottom: 12px; }
+.filter-input { width: 100%; }
+
+.location-card .card {
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(14,20,30,0.06);
+}
+
+.location-card .card-img-top { height: 220px; object-fit: cover; }
+.location-card .card-body { padding: 1rem; }
+.location-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.card-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+.location-card .card:hover .card-hover-overlay { opacity: 1; }
+
+@media (max-width: 768px) {
+  .page-header { padding: 80px 0; margin-top: -70px; }
+  .filter-sidebar { position: relative; top: auto; margin-bottom: 16px; }
+  /* On small screens the sidebar becomes a hidden panel until opened */
+  .filter-toggle-btn { display: inline-flex; }
+}
+
+@media (min-width: 992px) {
+  /* show toggle on desktop too so user clicks to open filter panel */
+  .filter-toggle-btn { display: inline-flex; }
+  .filter-overlay { display: none !important; }
+}
+
+/* When the panel is closed, collapse the aside column so cards use full width */
+body:not(.filter-open) .col-lg-3 { display: none; }
+body:not(.filter-open) .col-lg-9 { flex: 0 0 100%; max-width: 100%; }
+
+/* Close button inside filter panel */
+.close-filter-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1060;
+  border: none;
+  background: rgb(68, 66, 66);
+}
+.filter-panel .filter-sidebar { padding-top: 28px; }

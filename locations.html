@@ -16,36 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-
-    <style>
-      body {
-        font-family: "Poppins", sans-serif;
-      }
-      .page-header {
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../images/hero1.jpg")
-            center/cover no-repeat;
-        color: white;
-        padding: 120px 0;
-      }
-      .card img {
-        height: 220px;
-        object-fit: cover;
-      }
-      .card {
-        transition: 0.3s;
-      }
-      .card:hover {
-        transform: translateY(-8px);
-      }
-      @media (max-width: 768px) {
-        .page-header {
-          padding: 80px 0;
-        }
-        .page-header h1 {
-          font-size: 2rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
@@ -98,153 +69,156 @@
         <p class="mt-3">
           Discover beaches, mountains, wildlife, and cultural heritage.
         </p>
+        <!-- filter toggle removed from header; shown above cards on small screens -->
       </div>
     </section>
-
-    <!-- FILTER & SORT -->
-<div class="container my-4">
-  <div class="row g-3 align-items-end">
-
-    <div class="col-md-4">
-      <label class="form-label">Filter by Type</label>
-      <select class="form-select" id="filterType" onchange="filterLocations()">
-        <option value="all">All</option>
-        <option value="cultural">Cultural</option>
-        <option value="mountain">Mountain</option>
-        <option value="beach">Beach</option>
-      </select>
-    </div>
-
-    <div class="col-md-4">
-      <label class="form-label">Sort by</label>
-      <select class="form-select" id="sortType" onchange="sortLocations()">
-        <option value="az">Name A – Z</option>
-        <option value="za">Name Z – A</option>
-      </select>
-    </div>
-
-  </div>
-</div>
-
-
 
 
     <!-- LOCATIONS GRID -->
     <section class="py-5">
       <div class="container">
         <div class="row">
-          <!-- SIGIRIYA -->
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="images/locations/sigiriya.jpg"
-                class="card-img-top"
-                alt="Sigiriya"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Sigiriya</h5>
-                <p class="card-text">
-                  Ancient rock fortress and UNESCO World Heritage site.
-                </p>
-                <a href="hotels.html" class="btn btn-success btn-sm"
-                  >View Hotels</a
-                >
+          <!-- SIDEBAR FILTER -->
+          <aside class="col-lg-3 mb-4">
+            <div class="filter-panel closed">
+              <button id="closeFilter" class="btn close-filter-btn btn-dark text-white" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="filter-sidebar">
+                <h5>Filter locations</h5>
+                <div class="mb-3">
+                  <input id="locationSearch" class="form-control filter-input" placeholder="Search locations..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Type</label>
+                  <div class="d-flex flex-column gap-2">
+                    <label class="form-check form-check-inline">
+                      <input class="form-check-input type-checkbox" type="checkbox" value="beach" />
+                      <span class="form-check-label">Beach</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input class="form-check-input type-checkbox" type="checkbox" value="hill" />
+                      <span class="form-check-label">Hill Station</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input class="form-check-input type-checkbox" type="checkbox" value="wild" />
+                      <span class="form-check-label">Wildlife</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input class="form-check-input type-checkbox" type="checkbox" value="cultural" />
+                      <span class="form-check-label">Cultural</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button id="resetFilters" class="btn btn-outline-secondary btn-sm">Reset</button>
+                </div>
+                <div id="resultCount" class="text-muted small mt-3">Showing 0 of 0</div>
+                
               </div>
             </div>
-          </div>
+          </aside>
 
-          <!-- ELLA -->
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img src="images/locations/ella.jpg" class="card-img-top" alt="Ella" />
-              <div class="card-body">
-                <h5 class="card-title">Ella</h5>
-                <p class="card-text">
-                  Cool climate, tea plantations, waterfalls, and hiking.
-                </p>
-                <a href="hotels.html" class="btn btn-success btn-sm"
-                  >View Hotels</a
-                >
-              </div>
+          <!-- CARDS -->
+          <div class="col-lg-9">
+            <!-- Filter toggle placed above cards (visible on all screen sizes) -->
+            <div class="d-flex justify-content-end">
+              <button id="filterToggle" class="btn btn-outline-secondary filter-toggle-btn mb-3">
+                <i class="bi bi-funnel-fill"></i>
+                <span class="ms-2">Filter</span>
+              </button>
             </div>
-          </div>
-
-          <!-- KANDY -->
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="./images/locations/kandy.jpg"
-                class="card-img-top"
-                alt="Kandy"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Kandy</h5>
-                <p class="card-text">
-                  Cultural capital of Sri Lanka and Temple of the Tooth.
-                </p>
-                <a href="hotels.html" class="btn btn-success btn-sm"
-                  >View Hotels</a
-                >
+            <div class="row g-4" id="locationsGrid">
+              <!-- SIGIRIYA -->
+              <div class="col-md-4 location-card" data-type="cultural">
+                <div class="card position-relative">
+                  <span class="location-badge">Cultural</span>
+                  <img src="images/locations/sigiriya.jpg" class="card-img-top" alt="Sigiriya" />
+                  <div class="card-hover-overlay"></div>
+                  <div class="card-body">
+                    <h5 class="card-title">Sigiriya</h5>
+                    <p class="card-text">Ancient rock fortress and UNESCO World Heritage site.</p>
+                    <a href="hotels.html" class="btn btn-success btn-sm">View Hotels</a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- GALLE -->
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img src="images/locations/Galle.jpg" class="card-img-top" alt="Galle" />
-              <div class="card-body">
-                <h5 class="card-title">Galle</h5>
-                <p class="card-text">
-                  Historic fort, beaches, and colonial architecture.
-                </p>
-                <a href="hotels.html" class="btn btn-success btn-sm"
-                  >View Hotels</a
-                >
+              <!-- ELLA -->
+              <div class="col-md-4 location-card" data-type="hill">
+                <div class="card position-relative">
+                  <span class="location-badge">Hill</span>
+                  <img src="images/locations/ella.jpg" class="card-img-top" alt="Ella" />
+                  <div class="card-hover-overlay"></div>
+                  <div class="card-body">
+                    <h5 class="card-title">Ella</h5>
+                    <p class="card-text">Cool climate, tea plantations, waterfalls, and hiking.</p>
+                    <a href="hotels.html" class="btn btn-success btn-sm">View Hotels</a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- NUWARA ELIYA -->
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="./images/locations/nuwaraeliya.jpg"
-                class="card-img-top"
-                alt="Nuwara Eliya"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Nuwara Eliya</h5>
-                <p class="card-text">
-                  Tea gardens, cool weather, and colonial charm.
-                </p>
-                <a href="hotels.html" class="btn btn-success btn-sm"
-                  >View Hotels</a
-                >
+              <!-- KANDY -->
+              <div class="col-md-4 location-card" data-type="cultural">
+                <div class="card position-relative">
+                  <span class="location-badge">Cultural</span>
+                  <img src="images/locations/kandy.jpg" class="card-img-top" alt="Kandy" />
+                  <div class="card-hover-overlay"></div>
+                  <div class="card-body">
+                    <h5 class="card-title">Kandy</h5>
+                    <p class="card-text">Cultural capital of Sri Lanka and Temple of the Tooth.</p>
+                    <a href="hotels.html" class="btn btn-success btn-sm">View Hotels</a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- YALA -->
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="./images/locations/yala.jpg"
-                class="card-img-top"
-                alt="Yala"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Yala National Park</h5>
-                <p class="card-text">Wildlife safaris and leopard sightings.</p>
-                <a href="hotels.html" class="btn btn-success btn-sm"
-                  >View Hotels</a
-                >
+              <!-- GALLE -->
+              <div class="col-md-4 location-card" data-type="beach">
+                <div class="card position-relative">
+                  <span class="location-badge">Beach</span>
+                  <img src="images/locations/Galle.jpg" class="card-img-top" alt="Galle" />
+                  <div class="card-hover-overlay"></div>
+                  <div class="card-body">
+                    <h5 class="card-title">Galle</h5>
+                    <p class="card-text">Historic fort, beaches, and colonial architecture.</p>
+                    <a href="hotels.html" class="btn btn-success btn-sm">View Hotels</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- NUWARA ELIYA -->
+              <div class="col-md-4 location-card" data-type="hill">
+                <div class="card position-relative">
+                  <span class="location-badge">Hill</span>
+                  <img src="images/locations/nuwaraeliya.jpg" class="card-img-top" alt="Nuwara Eliya" />
+                  <div class="card-hover-overlay"></div>
+                  <div class="card-body">
+                    <h5 class="card-title">Nuwara Eliya</h5>
+                    <p class="card-text">Tea gardens, cool weather, and colonial charm.</p>
+                    <a href="hotels.html" class="btn btn-success btn-sm">View Hotels</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- YALA -->
+              <div class="col-md-4 location-card" data-type="wild">
+                <div class="card position-relative">
+                  <span class="location-badge">Wild</span>
+                  <img src="images/locations/yala.jpg" class="card-img-top" alt="Yala" />
+                  <div class="card-hover-overlay"></div>
+                  <div class="card-body">
+                    <h5 class="card-title">Yala National Park</h5>
+                    <p class="card-text">Wildlife safaris and leopard sightings.</p>
+                    <a href="hotels.html" class="btn btn-success btn-sm">View Hotels</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <div id="filterOverlay" class="filter-overlay"></div>
 
     <!-- FOOTER -->
     <footer class="bg-dark text-white py-4">
@@ -258,5 +232,6 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/filters.js"></script>
   </body>
 </html>
