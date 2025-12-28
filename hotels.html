@@ -14,6 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/style.css" />
 
     <style>
       body {
@@ -24,6 +25,8 @@
             center/cover;
         color: white;
         padding: 120px 0;
+        /* pull header up beneath fixed navbar (body has 70px top padding) */
+        margin-top: -70px;
       }
       .card img {
         height: 220px;
@@ -38,6 +41,7 @@
       @media (max-width: 768px) {
         .header {
           padding: 80px 0;
+          margin-top: -70px;
         }
         .header h1 {
           font-size: 2rem;
@@ -98,98 +102,102 @@
 
 
 
-    <div class="container my-4">
-  <div class="row g-3 align-items-end">
-
-    <!-- FILTER -->
-    <div class="col-md-4">
-      <label class="form-label">Accommodation Type</label>
-      <select class="form-select" id="filterType" onchange="filterHotels()">
-        <option value="all">All</option>
-        <option value="hotel">Hotel</option>
-        <option value="bungalow">Bungalow</option>
-        <option value="apartment">Apartment</option>
-        <option value="guesthouse">Guest House</option>
-      </select>
-    </div>
-
-    <!-- SORT -->
-    <div class="col-md-4">
-      <label class="form-label">Sort By</label>
-      <select class="form-select" id="sortType" onchange="sortHotels()">
-        <option value="az">Name A – Z</option>
-        <option value="za">Name Z – A</option>
-        <option value="priceLow">Price Low → High</option>
-        <option value="priceHigh">Price High → Low</option>
-      </select>
-    </div>
-
-  </div>
-</div>
-
-    <!-- HOTELS -->
+    <!-- HOTELS + FILTER (layout like Locations) -->
     <section class="py-5">
       <div class="container">
         <div class="row">
-          <!-- HOTEL 1 -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100">
-              <img
-                src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb"
-                class="card-img-top"
-                alt="Luxury Beach Resort"
-              />
-              <div class="card-body">
-                <h5>Luxury Beach Resort</h5>
-                <p>📍 Galle | ⭐⭐⭐⭐⭐</p>
-                <p>Ocean view, pool, breakfast included</p>
-                <a href="custompackage.html" class="btn btn-success btn-sm"
-                  >Add to Package</a
-                >
+          <!-- SIDEBAR FILTER -->
+          <aside class="col-lg-3 mb-4">
+            <div class="filter-panel closed">
+              <button id="closeHotelFilter" class="btn close-filter-btn" aria-label="Close">&times;</button>
+              <div class="filter-sidebar">
+                <h5>Filter hotels</h5>
+                <div class="mb-3">
+                  <input id="hotelSearch" class="form-control filter-input" placeholder="Search hotels..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Accommodation Type</label>
+                  <div class="d-flex flex-column gap-2">
+                    <label class="form-check">
+                      <input class="form-check-input hotel-type-checkbox" type="checkbox" value="hotel" />
+                      <span class="form-check-label">Hotel</span>
+                    </label>
+                    <label class="form-check">
+                      <input class="form-check-input hotel-type-checkbox" type="checkbox" value="bungalow" />
+                      <span class="form-check-label">Bungalow</span>
+                    </label>
+                    <label class="form-check">
+                      <input class="form-check-input hotel-type-checkbox" type="checkbox" value="apartment" />
+                      <span class="form-check-label">Apartment</span>
+                    </label>
+                    <label class="form-check">
+                      <input class="form-check-input hotel-type-checkbox" type="checkbox" value="guesthouse" />
+                      <span class="form-check-label">Guest House</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button id="resetHotelFilters" class="btn btn-outline-secondary btn-sm">Reset</button>
+                </div>
+                <div id="hotelResultCount" class="text-muted small mt-3">Showing 0 of 0</div>
               </div>
             </div>
-          </div>
+          </aside>
 
-          <!-- HOTEL 2 -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100">
-              <img
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945"
-                class="card-img-top"
-                alt="Hill Country Hotel"
-              />
-              <div class="card-body">
-                <h5>Hill Country Hotel</h5>
-                <p>📍 Nuwara Eliya | ⭐⭐⭐⭐</p>
-                <p>Cool climate, mountain views</p>
-                <a href="custompackage.html" class="btn btn-success btn-sm"
-                  >Add to Package</a
-                >
-              </div>
+          <!-- CARDS -->
+          <div class="col-lg-9">
+            <div class="d-flex justify-content-end">
+              <button id="hotelFilterToggle" class="btn btn-outline-secondary filter-toggle-btn mb-3">
+                <i class="bi bi-funnel-fill"></i>
+                <span class="ms-2">Filter</span>
+              </button>
             </div>
-          </div>
 
-          <!-- HOTEL 3 -->
-          <div class="col-md-4 mb-4">
-            <div class="card h-100">
-              <img
-                src="https://images.unsplash.com/photo-1551887373-6c5bd08e4a1a"
-                class="card-img-top"
-                alt="City Comfort Hotel"
-              />
-              <div class="card-body">
-                <h5>City Comfort Hotel</h5>
-                <p>📍 Kandy | ⭐⭐⭐</p>
-                <p>Near Temple of Tooth</p>
-                <a href="custompackage.html" class="btn btn-success btn-sm"
-                  >Add to Package</a
-                >
+            <div class="row g-3" id="hotelsGrid">
+              <!-- HOTEL 1 -->
+              <div class="col-md-4 mb-4 hotel-card" data-type="hotel">
+                <div class="card h-100">
+                  <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb" class="card-img-top" alt="Luxury Beach Resort" />
+                  <div class="card-body">
+                    <h5 class="card-title">Luxury Beach Resort</h5>
+                    <p>📍 Galle | ⭐⭐⭐⭐⭐</p>
+                    <p>Ocean view, pool, breakfast included</p>
+                    <a href="custompackage.html" class="btn btn-success btn-sm">Add to Package</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HOTEL 2 -->
+              <div class="col-md-4 mb-4 hotel-card" data-type="hotel">
+                <div class="card h-100">
+                  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" class="card-img-top" alt="Hill Country Hotel" />
+                  <div class="card-body">
+                    <h5 class="card-title">Hill Country Hotel</h5>
+                    <p>📍 Nuwara Eliya | ⭐⭐⭐⭐</p>
+                    <p>Cool climate, mountain views</p>
+                    <a href="custompackage.html" class="btn btn-success btn-sm">Add to Package</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HOTEL 3 -->
+              <div class="col-md-4 mb-4 hotel-card" data-type="guesthouse">
+                <div class="card h-100">
+                  <img src="https://images.unsplash.com/photo-1551887373-6c5bd08e4a1a" class="card-img-top" alt="City Comfort Hotel" />
+                  <div class="card-body">
+                    <h5 class="card-title">City Comfort Guest House</h5>
+                    <p>📍 Kandy | ⭐⭐⭐</p>
+                    <p>Near Temple of Tooth</p>
+                    <a href="custompackage.html" class="btn btn-success btn-sm">Add to Package</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <div id="hotelFilterOverlay" class="filter-overlay"></div>
 
     <!-- FOOTER -->
     <footer class="bg-dark text-white text-center py-4">
@@ -202,5 +210,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/hotels-filters.js"></script>
   </body>
 </html>
