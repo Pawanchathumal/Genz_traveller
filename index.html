@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <meta charset="UTF-8" />
+    <title>Genz Traveller | Explore Sri Lanka</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("./images/hero1.jpg") center/cover no-repeat;
+        height: 100vh;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 600;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
+      @media (max-width: 768px) {
+        .hero {
+          height: 70vh;
+        }
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .hero p {
+          font-size: 1rem;
+        }
+      }
+      .icon-box {
+        transition: 0.3s;
+      }
+      .icon-box:hover {
+        transform: translateY(-8px);
+
+        .blog-card img {
+          height: 200px;
+          object-fit: cover;
+        }
+        .blog-card:hover {
+          transform: translateY(-6px);
+          transition: 0.3s ease;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">Genz Traveller</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- LEFT MENU -->
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="locations.html">Locations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="hotels.html">Hotels</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vehicles.html">Vehicles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="packages.html">Packages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <!-- RIGHT BUTTONS -->
+          <div class="d-flex">
+            <a href="login.html" class="btn btn-outline-light me-2">Login</a>
+            <a href="signup.html" class="btn btn-success">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero d-flex align-items-center">
+      <div class="container text-center">
+        <h1>Explore the Beauty of Sri Lanka</h1>
+        <p class="my-4">
+          Beaches, mountains, wildlife, and culture — travel comfortably with
+          Genz Traveller.
+        </p>
+        <a href="locations.html" class="btn btn-success btn-lg me-2"
+          >Explore Locations</a
+        >
+        <a href="custompackage.html" class="btn btn-outline-light btn-lg"
+          >Create Your Package</a
+        >
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="py-5">
+      <div class="container text-center">
+        <h2 class="fw-bold">Why Choose Genz Traveller?</h2>
+        <p class="text-muted mt-3">
+          We offer comfortable vehicles, handpicked hotels, and unforgettable
+          Sri Lankan experiences.
+        </p>
+        <div class="row mt-5">
+          <div class="col-md-4 mb-3 icon-box">
+            <h5>🌴 Beautiful Locations</h5>
+            <p>Visit Sri Lanka's most stunning destinations.</p>
+          </div>
+          <div class="col-md-4 mb-3 icon-box">
+            <h5>🏨 Quality Hotels</h5>
+            <p>From budget stays to luxury resorts.</p>
+          </div>
+          <div class="col-md-4 mb-3 icon-box">
+            <h5>🚐 Comfortable Vehicles</h5>
+            <p>Bus, Van, and Car options with drivers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP DESTINATIONS -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <h2 class="fw-bold text-center mb-4">Top Destinations</h2>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <a href="locations.html" class="text-decoration-none">
+              <div class="card h-100">
+                <img
+                  src="./images/locations/Ella.jpg"
+                  class="card-img-top"
+                  alt="Ella"
+                  style="height: 220px; object-fit: cover"
+                />
+                <div class="card-body">
+                  <h5 class="text-dark">Ella</h5>
+                  <p class="text-muted">
+                    Green mountains, waterfalls, and peaceful vibes.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 mb-3">
+            <a href="locations.html" class="text-decoration-none">
+              <div class="card h-100">
+                <img
+                  src="./images/locations/Galle.jpg"
+                  class="card-img-top"
+                  alt="Galle"
+                  style="height: 220px; object-fit: cover"
+                />
+                <div class="card-body">
+                  <h5 class="text-dark">Galle</h5>
+                  <p class="text-muted">
+                    Historic fort and beautiful coastal views.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4 mb-3">
+            <a href="locations.html" class="text-decoration-none">
+              <div class="card h-100">
+                <img
+                  src="./images/locations/sigiriya.jpg"
+                  class="card-img-top"
+                  alt="Kandy"
+                  style="height: 220px; object-fit: cover"
+                />
+                <div class="card-body">
+                  <h5 class="text-dark">Kandy</h5>
+                  <p class="text-muted">
+                    Cultural capital with Temple of the Tooth.
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="top-destinations">
+      <!-- Top Destinations content -->
+    </section>
+
+    <!-- Blog Section Start -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5">Explore Our Blog</h2>
+        <div class="row g-4">
+          <!-- Blog Post 1 -->
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img
+                src="./images/blog/culture.jpg"
+                class="card-img-top"
+                alt="Sri Lankan Culture"
+                class="card-img-top"
+                alt="Sri Lankan Culture"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Sri Lankan Culture</h5>
+                <p class="card-text">
+                  Discover the rich traditions, festivals, and heritage of Sri
+                  Lanka, and explore where to experience authentic cultural
+                  treasures.
+                </p>
+              </div>
+              <div class="card-footer bg-white border-0">
+                <a href="#" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+          <!-- Blog Post 2 -->
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img
+                src="./images/blog/gems.jpg"
+                class="card-img-top"
+                alt="Gems & Jewelry"
+                class="card-img-top"
+                alt="Gems & Jewelry"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Gems & Jewelry</h5>
+                <p class="card-text">
+                  Explore Sri Lanka’s world-famous gems and jewelry. Learn where
+                  to find Blue Sapphires, Rubies, and handcrafted treasures
+                  safely.
+                </p>
+              </div>
+              <div class="card-footer bg-white border-0">
+                <a href="#" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+          <!-- Blog Post 3 -->
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img
+                src="images/blog/body.jpg"
+                class="card-img-top"
+                alt="Ayurveda & Wellness"
+                class="card-img-top"
+                alt="Ayurveda & Wellness"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Ayurveda & Wellness</h5>
+                <p class="card-text">
+                  Experience traditional Sri Lankan Ayurveda and wellness
+                  treatments designed to rejuvenate your body, mind, and spirit.
+                </p>
+              </div>
+              <div class="card-footer bg-white border-0">
+                <a href="#" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Blog Section End -->
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-4">
+      <div class="container text-center">
+        <h5>Genz Traveller</h5>
+        <p>Explore Sri Lanka with comfort and care.</p>
+        <p>📞 WhatsApp: +94 71 959 3100</p>
+        <p class="mb-0">&copy; 2025 Genz Traveller. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

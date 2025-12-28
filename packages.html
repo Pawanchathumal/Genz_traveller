@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tour Packages | Genz Traveller</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .header {
+        background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+          url("https://images.unsplash.com/photo-1548013146-72479768bada")
+            center/cover;
+        color: white;
+        padding: 120px 0;
+      }
+      .card img {
+        height: 220px;
+        object-fit: cover;
+      }
+      .price {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #198754;
+      }
+      @media (max-width: 768px) {
+        .header {
+          padding: 80px 0;
+        }
+        .header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Genz Traveller</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- LEFT MENU -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="locations.html">Locations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="hotels.html">Hotels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="vehicles.html">Vehicles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="packages.html">Packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <!-- RIGHT BUTTONS -->
+      <div class="d-flex">
+        <a href="login.html" class="btn btn-outline-light me-2">Login</a>
+        <a href="signup.html" class="btn btn-success">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- HEADER -->
+    <section class="header text-center">
+      <div class="container">
+        <h1 class="fw-bold">Sri Lanka Tour Packages</h1>
+        <p>Carefully designed tours for unforgettable experiences</p>
+      </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <!-- PACKAGE 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <img
+                src="https://images.unsplash.com/photo-1604998103924-89e01264bffb"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5>3 Days Sri Lanka Highlights</h5>
+                <p>📍 Kandy – Ella – Galle</p>
+                <p>
+                  🏨 Standard Hotels
+                  <br />🚐 AC Van with Driver
+                </p>
+                <p class="price">From USD 299 / person</p>
+                <a href="custompackage.html" class="btn btn-success btn-sm">
+                  Book Now
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PACKAGE 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <img
+                src="https://images.unsplash.com/photo-1593253787226-567eda4ad32d"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5>5 Days Hill Country Tour</h5>
+                <p>📍 Kandy – Nuwara Eliya – Ella</p>
+                <p>
+                  🏨 Luxury Hotels
+                  <br />🚐 AC Van with Driver
+                </p>
+                <p class="price">From USD 599 / person</p>
+                <a href="custompackage.html" class="btn btn-success btn-sm">
+                  Book Now
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PACKAGE 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <img
+                src="https://images.unsplash.com/photo-1560179406-1f8d9e8bb0b2"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5>7 Days Beach & Culture Tour</h5>
+                <p>📍 Sigiriya – Kandy – Galle – Mirissa</p>
+                <p>
+                  🏨 Mixed Hotels
+                  <br />🚌 Luxury Bus / Van
+                </p>
+                <p class="price">From USD 899 / person</p>
+                <a href="custompackage.html" class="btn btn-success btn-sm">
+                  Book Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="bg-success text-white text-center py-5">
+      <div class="container">
+        <h2>Create Your Own Tour Package</h2>
+        <p>Choose locations, hotels, and vehicles you like</p>
+        <a href="custompackage.html" class="btn btn-light btn-lg">
+          Build Custom Package
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-4">
+      <div class="container">
+        <h5>Genz Traveller</h5>
+        <p>Explore Sri Lanka with comfort and care.</p>
+        <p>📞 WhatsApp: +94 71 959 3100</p>
+        <p class="mb-0">&copy; 2025 Genz Traveller. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

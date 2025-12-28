@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Locations | Genz Traveller</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1548013146-72479768bada")
+            center/cover no-repeat;
+        color: white;
+        padding: 120px 0;
+      }
+      .card img {
+        height: 220px;
+        object-fit: cover;
+      }
+      .card {
+        transition: 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-8px);
+      }
+      @media (max-width: 768px) {
+        .page-header {
+          padding: 80px 0;
+        }
+        .page-header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Genz Traveller</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- LEFT MENU -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="locations.html">Locations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="hotels.html">Hotels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="vehicles.html">Vehicles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="packages.html">Packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <!-- RIGHT BUTTONS -->
+      <div class="d-flex">
+        <a href="login.html" class="btn btn-outline-light me-2">Login</a>
+        <a href="signup.html" class="btn btn-success">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- HEADER -->
+    <section class="page-header text-center">
+      <div class="container">
+        <h1 class="fw-bold">Top Locations in Sri Lanka</h1>
+        <p class="mt-3">
+          Discover beaches, mountains, wildlife, and cultural heritage.
+        </p>
+      </div>
+    </section>
+
+    <!-- FILTER & SORT -->
+<div class="container my-4">
+  <div class="row g-3 align-items-end">
+
+    <div class="col-md-4">
+      <label class="form-label">Filter by Type</label>
+      <select class="form-select" id="filterType" onchange="filterLocations()">
+        <option value="all">All</option>
+        <option value="cultural">Cultural</option>
+        <option value="mountain">Mountain</option>
+        <option value="beach">Beach</option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label class="form-label">Sort by</label>
+      <select class="form-select" id="sortType" onchange="sortLocations()">
+        <option value="az">Name A – Z</option>
+        <option value="za">Name Z – A</option>
+      </select>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+    <!-- LOCATIONS GRID -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <!-- SIGIRIYA -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img
+                src="images/locations/sigiriya.jpg"
+                class="card-img-top"
+                alt="Sigiriya"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Sigiriya</h5>
+                <p class="card-text">
+                  Ancient rock fortress and UNESCO World Heritage site.
+                </p>
+                <a href="hotels.html" class="btn btn-success btn-sm"
+                  >View Hotels</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- ELLA -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="images/locations/ella.jpg" class="card-img-top" alt="Ella" />
+              <div class="card-body">
+                <h5 class="card-title">Ella</h5>
+                <p class="card-text">
+                  Cool climate, tea plantations, waterfalls, and hiking.
+                </p>
+                <a href="hotels.html" class="btn btn-success btn-sm"
+                  >View Hotels</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- KANDY -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img
+                src="./images/locations/kandy.jpg"
+                class="card-img-top"
+                alt="Kandy"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Kandy</h5>
+                <p class="card-text">
+                  Cultural capital of Sri Lanka and Temple of the Tooth.
+                </p>
+                <a href="hotels.html" class="btn btn-success btn-sm"
+                  >View Hotels</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- GALLE -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="images/locations/Galle.jpg" class="card-img-top" alt="Galle" />
+              <div class="card-body">
+                <h5 class="card-title">Galle</h5>
+                <p class="card-text">
+                  Historic fort, beaches, and colonial architecture.
+                </p>
+                <a href="hotels.html" class="btn btn-success btn-sm"
+                  >View Hotels</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- NUWARA ELIYA -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img
+                src="./images/locations/nuwaraeliya.jpg"
+                class="card-img-top"
+                alt="Nuwara Eliya"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Nuwara Eliya</h5>
+                <p class="card-text">
+                  Tea gardens, cool weather, and colonial charm.
+                </p>
+                <a href="hotels.html" class="btn btn-success btn-sm"
+                  >View Hotels</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- YALA -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img
+                src="./images/locations/yala.jpg"
+                class="card-img-top"
+                alt="Yala"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Yala National Park</h5>
+                <p class="card-text">Wildlife safaris and leopard sightings.</p>
+                <a href="hotels.html" class="btn btn-success btn-sm"
+                  >View Hotels</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-4">
+      <div class="container text-center">
+        <h5>Genz Traveller</h5>
+        <p>Explore Sri Lanka with comfort and care.</p>
+        <p>📞 WhatsApp: +94 71 959 3100</p>
+        <p class="mb-0">&copy; 2025 Genz Traveller</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
