@@ -13,6 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/style.css" />
 
     <style>
       body {
@@ -23,6 +24,8 @@
             center/cover;
         color: white;
         padding: 120px 0;
+        /* pull header up beneath fixed navbar (body has 70px top padding) */
+        margin-top: -70px;
       }
       .card img {
         height: 200px;
@@ -39,7 +42,7 @@
       @media (max-width: 768px) {
         .header {
           padding: 80px 0;
-        }
+          margin-top: -70px;
         .header h1 {
           font-size: 2rem;
         }
@@ -112,11 +115,7 @@
         </li>
       </ul>
 
-      <!-- RIGHT BUTTONS -->
-      <div class="d-flex">
-        <a href="login.html" class="btn btn-outline-light me-2">Login</a>
-        <a href="signup.html" class="btn btn-success">Sign Up</a>
-      </div>
+      
     </div>
   </div>
 </nav>
@@ -141,65 +140,129 @@
    <section class="py-5">
     <div class="container">
       <div class="row">
-        <!-- CAR -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img
-              src="./images/vehicles/van1.jpeg"
-              class="card-img-top"
-              alt="Car"
-            />
-            <div class="card-body">
-              <h5>Car</h5>
-              <p>🚗 AC | 1–3 Passengers</p>
-              <p>Best for couples</p>
-              <a href="custompackage.html" class="btn btn-success btn-sm"
-                >Select Vehicle</a
-              >
+        <!-- SIDEBAR FILTER -->
+        <aside class="col-lg-3 mb-4">
+          <div class="filter-panel closed">
+            <button id="closeVehicleFilter" class="btn close-filter-btn" aria-label="Close">&times;</button>
+            <div class="filter-sidebar">
+              <h5>Filter vehicles</h5>
+              <div class="mb-3">
+                <input id="vehicleSearch" class="form-control filter-input" placeholder="Search vehicles..." />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Type</label>
+                <div class="d-flex flex-column gap-2">
+                  <label class="form-check"><input class="form-check-input vehicle-type-checkbox" type="checkbox" value="car" /> <span class="form-check-label">Car</span></label>
+                  <label class="form-check"><input class="form-check-input vehicle-type-checkbox" type="checkbox" value="van" /> <span class="form-check-label">Van</span></label>
+                  <label class="form-check"><input class="form-check-input vehicle-type-checkbox" type="checkbox" value="bus" /> <span class="form-check-label">Bus</span></label>
+                  <label class="form-check"><input class="form-check-input vehicle-type-checkbox" type="checkbox" value="bike" /> <span class="form-check-label">Bike</span></label>
+                  <label class="form-check"><input class="form-check-input vehicle-type-checkbox" type="checkbox" value="threewheel" /> <span class="form-check-label">Three-wheeler</span></label>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">AC / Non-AC</label>
+                <select id="vehicleAC" class="form-select">
+                  <option value="">All</option>
+                  <option value="ac">AC</option>
+                  <option value="non-ac">Non-AC</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Minimum passengers</label>
+                <input id="vehiclePassengers" type="number" min="1" max="100" class="form-control" placeholder="e.g. 4" />
+              </div>
+
+              <div class="d-flex gap-2">
+                <button id="resetVehicleFilters" class="btn btn-outline-secondary btn-sm">Reset</button>
+              </div>
+              <div id="vehicleResultCount" class="text-muted small mt-3">Showing 0 of 0</div>
             </div>
           </div>
-        </div>
+        </aside>
 
-        <!-- VAN -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img
-              src="./images/vehicles/van2.jpeg"
-              class="card-img-top"
-              alt="Van"
-            />
-            <div class="card-body">
-              <h5>Van (Hiace)</h5>
-              <p>🚐 AC | 6–12 Passengers</p>
-              <p>Family & group tours</p>
-              <a href="custompackage.html" class="btn btn-success btn-sm"
-                >Select Vehicle</a
-              >
-            </div>
+        <!-- CARDS -->
+        <div class="col-lg-9">
+          <div class="d-flex justify-content-end">
+            <button id="vehicleFilterToggle" class="btn btn-outline-secondary filter-toggle-btn mb-3">
+              <i class="bi bi-funnel-fill"></i>
+              <span class="ms-2">Filter</span>
+            </button>
           </div>
-        </div>
 
-        <!-- BUS -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <img
-              src="./images/vehicles/bus1.jpeg"
-              class="card-img-top"
-              alt="Bus"
-            />
-            <div class="card-body">
-              <h5>Luxury Bus</h5>
-              <p>🚌 AC | 20–45 Passengers</p>
-              <p>Large groups & events</p>
-              <a href="custompackage.html" class="btn btn-success btn-sm"
-                >Select Vehicle</a
-              >
+          <div class="row g-4" id="vehiclesGrid">
+            <!-- CAR -->
+            <div class="col-md-4 mb-4 vehicle-card" data-type="car" data-ac="ac" data-passengers="3">
+              <div class="card h-100">
+                <img src="./images/vehicles/van1.jpeg" class="card-img-top" alt="Car" />
+                <div class="card-body">
+                  <h5 class="card-title">Car</h5>
+                  <p>🚗 AC | 1–3 Passengers</p>
+                  <p>Best for couples</p>
+                  <a href="custompackage.html" class="btn btn-success btn-sm">Select Vehicle</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- VAN -->
+            <div class="col-md-4 mb-4 vehicle-card" data-type="van" data-ac="ac" data-passengers="12">
+              <div class="card h-100">
+                <img src="./images/vehicles/van2.jpeg" class="card-img-top" alt="Van" />
+                <div class="card-body">
+                  <h5 class="card-title">Van (Hiace)</h5>
+                  <p>🚐 AC | 6–12 Passengers</p>
+                  <p>Family & group tours</p>
+                  <a href="custompackage.html" class="btn btn-success btn-sm">Select Vehicle</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- BUS -->
+            <div class="col-md-4 mb-4 vehicle-card" data-type="bus" data-ac="ac" data-passengers="45">
+              <div class="card h-100">
+                <img src="./images/vehicles/bus1.jpeg" class="card-img-top" alt="Bus" />
+                <div class="card-body">
+                  <h5 class="card-title">Luxury Bus</h5>
+                  <p>🚌 AC | 20–45 Passengers</p>
+                  <p>Large groups & events</p>
+                  <a href="custompackage.html" class="btn btn-success btn-sm">Select Vehicle</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- BIKE -->
+            <div class="col-md-4 mb-4 vehicle-card" data-type="bike" data-ac="non-ac" data-passengers="1">
+              <div class="card h-100">
+                <img src="./images/vehicles/bike1.jpg" class="card-img-top" alt="Bike" />
+                <div class="card-body">
+                  <h5 class="card-title">Motorbike</h5>
+                  <p>🏍️ Non-AC | 1–2 Passengers</p>
+                  <p>Quick solo trips</p>
+                  <a href="custompackage.html" class="btn btn-success btn-sm">Select Vehicle</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- THREEWHEEL -->
+            <div class="col-md-4 mb-4 vehicle-card" data-type="threewheel" data-ac="non-ac" data-passengers="3">
+              <div class="card h-100">
+                <img src="./images/vehicles/three1.jpg" class="card-img-top" alt="Three-wheeler" />
+                <div class="card-body">
+                  <h5 class="card-title">Three-wheeler</h5>
+                  <p>🛺 Non-AC | 1–3 Passengers</p>
+                  <p>City short rides</p>
+                  <a href="custompackage.html" class="btn btn-success btn-sm">Select Vehicle</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <div id="vehicleFilterOverlay" class="filter-overlay"></div>
 
     <!-- FOOTER -->
     <footer class="bg-dark text-white text-center py-4">
@@ -212,5 +275,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/vehicles-filters.js"></script>
   </body>
 </html>
